@@ -1,4 +1,13 @@
 import logo from './logo.svg';
+import {
+  BlogCreateForm,
+  BlogUpdateForm,
+  CommentCreateForm,
+  CommentUpdateForm,
+  PostCreateForm,
+  PostUpdateForm
+  // studioTheme
+} from './ui-components'
 import './App.css';
 
 function App() {
@@ -7,6 +16,12 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Hello from V2</h1>
+        <BlogCreateForm />
+        <BlogUpdateForm />
+        <CommentCreateForm />
+        <CommentUpdateForm />
+        <PostCreateForm />
+        <PostUpdateForm />
       </header>
     </div>
   )
