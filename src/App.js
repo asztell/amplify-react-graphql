@@ -36,7 +36,8 @@ async function getBlog(id) {
       }
     })
 
-    const { response } = await restOperation
+    const { body } = await restOperation.response
+    const response = await body.json()
 
     console.log('POST call succeeded')
     console.log(response)
