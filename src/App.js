@@ -1,4 +1,5 @@
-import { post } from 'aws-amplify/api'
+import { useState } from 'react'
+import { post, get } from 'aws-amplify/api'
 import './App.css'
 
 async function postBlog(id) {
@@ -23,13 +24,37 @@ async function postBlog(id) {
     console.log('POST call failed: ', JSON.parse(e.response.body))
   }
 }
+async function getBlog(id) {
+  try {
+    const restOperation = get({
+      apiName: 'blogApi',
+      path: `/blog/${id}`,
+      options: {
+        queryParams: {
+          id
+        }
+      }
+    })
+
+    const { body } = await restOperation.response
+    const response = await body.json()
+
+    console.log('POST call succeeded')
+    console.log(response)
+  } catch (e) {
+    console.log('POST call failed: ', JSON.parse(e.response.body))
+  }
+}
 
 function App() {
+  const [blogId, setBlogId] = useState('')
   return (
     <div className="App">
       <button onClick={() => postBlog(Math.round(Math.random() * 100))}>
-        Post Todo
+        Post Blog
       </button>
+      <input type="text" onChange={({ target }) => setBlogId(target.value)} />
+      <button onClick={() => getBlog(blogId)}>Get Blog</button>
     </div>
   )
 }

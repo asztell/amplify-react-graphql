@@ -31,8 +31,14 @@ app.use(function(req, res, next) {
  **********************/
 
 app.get('/blog/:id', function(req, res) {
-  // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
+  const query = req.query
+  // or
+  // const query = req.apiGateway.event.queryStringParameters
+  res.json({
+    event: req.apiGateway.event, // to view all event data
+    query: query
+  })
+  // res.json({success: 'get call succeed!', url: req.url});
 });
 
 app.get('/blog/:id/*', function(req, res) {
