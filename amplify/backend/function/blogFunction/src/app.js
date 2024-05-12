@@ -35,8 +35,8 @@ app.get('/blog/:id', function(req, res) {
   // or
   // const query = req.apiGateway.event.queryStringParameters
   res.json({
-    event: req.apiGateway.event, // to view all event data
-    query: query
+    apiGateway: req.apiGateway, // to view all event data
+    query
   })
   // res.json({success: 'get call succeed!', url: req.url});
 });
