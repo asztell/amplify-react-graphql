@@ -27,7 +27,9 @@ async function postBlog(id) {
 function App() {
   return (
     <div className="App">
-      <button onClick={postBlog}>Post Todo</button>
+      <button onClick={() => postBlog(Math.round(Math.random() * 100))}>
+        Post Todo
+      </button>
     </div>
   )
 }
