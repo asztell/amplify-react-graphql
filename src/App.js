@@ -75,10 +75,11 @@ async function postBlog(id) {
 
 async function createBlogQuery(id) {
   try {
-    await client.mutate({
-      mutation: createBlog,
+    const response = await client.graphql({
+      query: createBlog,
       variables: { input: { id } }
     })
+    console.log('response from graphql query: ', response)
   } catch (e) {
     console.log(e)
   }
