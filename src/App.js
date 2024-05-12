@@ -1,5 +1,27 @@
 import { useState } from 'react'
-import { post, get } from 'aws-amplify/api'
+import { post, get, generateClient } from 'aws-amplify/api'
+import {
+  createBlog,
+  updateBlog,
+  deleteBlog,
+  createPost,
+  updatePost,
+  deletePost,
+  createComment,
+  updateComment,
+  deleteComment
+} from './graphql/mutations'
+import {
+  getBlog,
+  listBlogs,
+  syncBlogs,
+  getComment,
+  listComments,
+  syncComments,
+  getPost,
+  listPosts,
+  syncPosts
+} from './graphql/queries'
 import './App.css'
 
 async function postBlog(id) {
@@ -24,35 +46,36 @@ async function postBlog(id) {
     console.log('POST call failed: ', JSON.parse(e.response.body))
   }
 }
-async function getBlog(id) {
-  try {
-    const restOperation = get({
-      apiName: 'blogApi',
-      path: `/blog/${id}`,
-      options: {
-        queryParams: {
-          id
-        }
-      }
-    })
+// async function getBlog(id) {
+//   try {
+//     const restOperation = get({
+//       apiName: 'blogApi',
+//       path: `/blog/${id}`,
+//       options: {
+//         queryParams: {
+//           id
+//         }
+//       }
+//     })
 
-    const { body } = await restOperation.response
-    const response = await body.json()
+//     const { body } = await restOperation.response
+//     const response = await body.json()
 
-    console.log('POST call succeeded')
-    console.log(response)
-  } catch (e) {
-    console.log('POST call failed: ', JSON.parse(e.response.body))
-  }
-}
+//     console.log('POST call succeeded')
+//     console.log(response)
+//   } catch (e) {
+//     console.log('POST call failed: ', JSON.parse(e.response.body))
+//   }
+// }
 
 function App() {
   const [blogId, setBlogId] = useState('')
   return (
     <div className="App">
-      <button onClick={() => postBlog(Math.round(Math.random() * 100))}>
+      <button onClick={() => createBlog('1')}>Create Blog</button>
+      {/* <button onClick={() => postBlog(Math.round(Math.random() * 100))}>
         Post Blog
-      </button>
+      </button> */}
       <input type="text" onChange={({ target }) => setBlogId(target.value)} />
       <button onClick={() => getBlog(blogId)}>Get Blog</button>
     </div>
