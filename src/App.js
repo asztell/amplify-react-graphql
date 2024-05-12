@@ -24,6 +24,11 @@ import {
 } from './graphql/queries'
 import './App.css'
 
+const client = generateClient({
+  apiName: 'blogApi',
+  region: 'us-east-1'
+})
+
 async function postBlog(id) {
   try {
     const restOperation = post({
@@ -68,11 +73,22 @@ async function postBlog(id) {
 //   }
 // }
 
+async function createBlogQuery(id) {
+  try {
+    await client.mutate({
+      mutation: createBlog,
+      variables: { input: { id } }
+    })
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 function App() {
   const [blogId, setBlogId] = useState('')
   return (
     <div className="App">
-      <button onClick={() => createBlog('1')}>Create Blog</button>
+      <button onClick={() => createBlogQuery('1')}>Create Blog</button>
       {/* <button onClick={() => postBlog(Math.round(Math.random() * 100))}>
         Post Blog
       </button> */}
