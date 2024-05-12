@@ -15,6 +15,45 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
+    },
+    "blogApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "blogFunction"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "blogFunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_blogFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "blogFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_blogFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "blogFunction"
+        }
+      ]
     }
   }
 }

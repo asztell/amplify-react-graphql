@@ -13,7 +13,14 @@
     },
     "categories": {
       "api": {
-        "amplifyapp": {}
+        "amplifyapp": {},
+        "blogApi": {}
+      },
+      "function": {
+        "blogFunction": {
+          "deploymentBucketName": "amplify-amplifyapp-dev-f5696-deployment",
+          "s3Key": "amplify-builds/blogFunction-644a72306576736d4e4d-build.zip"
+        }
       }
     }
   }
